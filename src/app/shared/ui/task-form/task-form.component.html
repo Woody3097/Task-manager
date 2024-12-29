@@ -1,0 +1,26 @@
+<form [formGroup]="formGroup" (ngSubmit)="submitForm.emit()">
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input type="text" id="title" name="title" placeholder="Enter task title" formControlName="title">
+
+    <div *ngIf="(titleControl.hasError('required') || titleControl.hasError('whitespace')) && titleControl.touched" class="error-message">
+      Title is required.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="description">Description</label>
+    <textarea id="description" name="description" placeholder="Enter task description" type="text" formControlName="description"></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="status">Status</label>
+    <select id="status" name="status" formControlName="status">
+      <option *ngFor="let status of taskStatuses" [value]="status">{{ status }}</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <button type="submit" [disabled]="formGroup.invalid">Save</button>
+  </div>
+</form>

@@ -50,7 +50,7 @@ export class TaskService implements OnDestroy {
         }),
         takeUntil(this.destroy$),
       )
-      .subscribe(() => this.router.navigateByUrl('task-list'));
+      .subscribe();
   }
 
   private addTask(task: ITask): void {
