@@ -3,7 +3,7 @@ import { Resolve, ActivatedRouteSnapshot, Router } from '@angular/router';
 
 import { catchError, EMPTY, Observable } from 'rxjs';
 
-import { ITask } from '../shared/intefaces/task.interface';
+import { ITask } from '../shared/interfaces/task.interface';
 import { TaskService } from '../shared/data-access/task.service';
 
 @Injectable({

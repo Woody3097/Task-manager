@@ -3,7 +3,7 @@ import { AsyncPipe, NgForOf, NgIf } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
 import { TaskService } from '../shared/data-access/task.service';
-import { ETaskStatus, ITask } from '../shared/intefaces/task.interface';
+import { ETaskStatus, ITask } from '../shared/interfaces/task.interface';
 
 @Component({
   selector: 'app-task-list',

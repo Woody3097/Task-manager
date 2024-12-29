@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { delay, Observable, of, tap, throwError } from 'rxjs';
 
-import { ITask, TCreateTask, TEditTask } from '../intefaces/task.interface';
+import { ITask, TCreateTask, TEditTask } from '../interfaces/task.interface';
 
 @Injectable({
   providedIn: 'root',

@@ -1,6 +1,6 @@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { noWhitespaceValidator } from '../utils';
-import { ETaskStatus } from '../intefaces/task.interface';
+import { ETaskStatus } from '../interfaces/task.interface';
 import { inject } from '@angular/core';
 import { TaskService } from '../data-access/task.service';
 

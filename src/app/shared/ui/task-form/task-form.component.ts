@@ -12,7 +12,7 @@ import {
 } from '@angular/forms';
 import { NgForOf, NgIf } from '@angular/common';
 
-import { ETaskStatus } from '../../intefaces/task.interface';
+import { ETaskStatus } from '../../interfaces/task.interface';
 
 @Component({
   selector: 'app-task-form',

@@ -12,7 +12,7 @@ import {
   tap,
 } from 'rxjs';
 
-import { ITask, TCreateTask, TEditTask } from '../intefaces/task.interface';
+import { ITask, TCreateTask, TEditTask } from '../interfaces/task.interface';
 import { ApiService } from './api.service';
 
 @Injectable({

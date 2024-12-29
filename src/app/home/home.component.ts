@@ -4,7 +4,7 @@ import { AsyncPipe } from '@angular/common';
 import { map, Observable } from 'rxjs';
 
 import { TaskService } from '../shared/data-access/task.service';
-import { ETaskStatus } from '../shared/intefaces/task.interface';
+import { ETaskStatus } from '../shared/interfaces/task.interface';
 import { TaskCardComponent } from '../shared/ui/task-card/task-card.component';
 
 @Component({
