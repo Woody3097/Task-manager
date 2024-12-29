@@ -1,11 +1,7 @@
 import { Injectable } from '@angular/core';
 import { delay, Observable, of, tap, throwError } from 'rxjs';
 
-import {
-  ITask,
-  TCreateTask,
-  TEditTask,
-} from '../intefaces/task.interface';
+import { ITask, TCreateTask, TEditTask } from '../intefaces/task.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -45,7 +41,7 @@ export class ApiService {
   removeTask$(id: number): Observable<{ ok: boolean }> {
     const tasks = this.getTasksFromLocalStorage();
 
-    let taskIndex = tasks.findIndex((task) => task.id === id);
+    const taskIndex = tasks.findIndex((task) => task.id === id);
 
     return of({ ok: true }).pipe(
       delay(150),
@@ -78,6 +74,21 @@ export class ApiService {
 
   private getTasksFromLocalStorage(): ITask[] {
     const tasksFromDB = localStorage.getItem('tasks');
-    return tasksFromDB ? JSON.parse(tasksFromDB) : [];
+
+    if (!tasksFromDB) {
+      return [];
+    }
+
+    try {
+      const parsedValue = JSON.parse(tasksFromDB);
+
+      if (Array.isArray(parsedValue)) {
+        return parsedValue;
+      } else {
+        return [];
+      }
+    } catch (e) {
+      return [];
+    }
   }
 }

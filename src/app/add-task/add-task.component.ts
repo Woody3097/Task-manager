@@ -13,10 +13,6 @@ import { TaskForm } from '../shared/abstract/task.abstract.class';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddTaskComponent extends TaskForm {
-  constructor() {
-    super();
-  }
-
   saveNewTask(): void {
     this.taskService.add$.next(this.processFormData());
   }

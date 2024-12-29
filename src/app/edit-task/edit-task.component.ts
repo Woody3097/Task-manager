@@ -23,13 +23,10 @@ import { TaskForm } from '../shared/abstract/task.abstract.class';
 export class EditTaskComponent extends TaskForm implements OnInit {
   private route = inject(ActivatedRoute);
 
-  taskId!: number;
-
-  constructor() {
-    super();
-  }
+  private taskId!: number;
 
   ngOnInit() {
+    // Get data from resolver
     this.route.data.pipe(take(1)).subscribe((res) => {
       this.form.patchValue(res['task']);
       this.taskId = res['task'].id;

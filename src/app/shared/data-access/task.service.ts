@@ -37,6 +37,7 @@ export class TaskService implements OnDestroy {
   remove$: Subject<ITask['id']> = new Subject<ITask['id']>();
 
   constructor() {
+    // Initial load
     this.loadTasks$.pipe(take(1)).subscribe((tasks) => {
       this.taskState$.next(tasks);
     });

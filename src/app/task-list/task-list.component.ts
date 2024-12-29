@@ -26,8 +26,6 @@ export class TaskListComponent {
   }
 
   changeTaskStatus(task: ITask, status: ETaskStatus): void {
-    task.status = status;
-
-    this.taskService.edit$.next({ id: task.id, data: { status: task.status } });
+    this.taskService.edit$.next({ id: task.id, data: { status } });
   }
 }
