@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import {
   BehaviorSubject,
   Observable,
+  of,
   Subject,
   switchMap,
   take,
@@ -11,7 +12,7 @@ import {
   tap,
 } from 'rxjs';
 
-import { ITask, TCreateTask } from '../intefaces/task.interface';
+import { ITask, TCreateTask, TEditTask } from '../intefaces/task.interface';
 import { ApiService } from './api.service';
 
 @Injectable({
@@ -32,6 +33,7 @@ export class TaskService implements OnDestroy {
   // sources
   private loadTasks$: Observable<ITask[]> = this.apiService.getTasks$();
   add$: Subject<TCreateTask> = new Subject<TCreateTask>();
+  edit$: Subject<TEditTask> = new Subject<TEditTask>();
   remove$: Subject<ITask['id']> = new Subject<ITask['id']>();
 
   constructor() {
@@ -53,6 +55,19 @@ export class TaskService implements OnDestroy {
       )
       .subscribe(() => this.router.navigateByUrl('task-list'));
 
+    this.edit$
+      .pipe(
+        switchMap((task) => {
+          return this.apiService.editTask$(task).pipe(
+            tap(() => {
+              this.editTask(task);
+            }),
+          );
+        }),
+        takeUntil(this.destroy$),
+      )
+      .subscribe(() => this.router.navigateByUrl('task-list'));
+
     this.remove$
       .pipe(
         switchMap((id) => {
@@ -67,8 +82,32 @@ export class TaskService implements OnDestroy {
       .subscribe();
   }
 
+  getTaskById(id: number): Observable<ITask> {
+    const stateTask = this.taskState$.getValue().find((task) => task.id === id);
+
+    if (stateTask) {
+      return of(stateTask);
+    } else {
+      return this.apiService.getTaskById(id);
+    }
+  }
+
   private addTask(task: ITask): void {
     this.taskState$.next([task, ...this.taskState$.getValue()]);
+  }
+
+  private editTask(task: TEditTask): void {
+    const currentTasks = this.taskState$.getValue();
+
+    this.taskState$.next(
+      currentTasks.map((task_) => {
+        if (task_.id === task.id) {
+          return { ...task_, ...task.data };
+        } else {
+          return task_;
+        }
+      }),
+    );
   }
 
   private removeTask(id: number): void {

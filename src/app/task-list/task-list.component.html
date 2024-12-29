@@ -24,11 +24,13 @@
           <button
             *ngIf="task.status !== ETaskStatus.completed"
             class="complete"
+            (click)="changeTaskStatus(task, ETaskStatus.completed)"
           >Mark as Completed</button>
 
           <button
             *ngIf="task.status !== ETaskStatus.pending"
             class="pending"
+            (click)="changeTaskStatus(task, ETaskStatus.pending)"
           >Mark as Pending</button>
         </div>
       </td>
