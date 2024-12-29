@@ -32,6 +32,7 @@ export class TaskService implements OnDestroy {
   // sources
   private loadTasks$: Observable<ITask[]> = this.apiService.getTasks$();
   add$: Subject<TCreateTask> = new Subject<TCreateTask>();
+  remove$: Subject<ITask['id']> = new Subject<ITask['id']>();
 
   constructor() {
     this.loadTasks$.pipe(take(1)).subscribe((tasks) => {
@@ -50,11 +51,31 @@ export class TaskService implements OnDestroy {
         }),
         takeUntil(this.destroy$),
       )
+      .subscribe(() => this.router.navigateByUrl('task-list'));
+
+    this.remove$
+      .pipe(
+        switchMap((id) => {
+          return this.apiService.removeTask$(id).pipe(
+            tap(() => {
+              this.removeTask(id);
+            }),
+          );
+        }),
+        takeUntil(this.destroy$),
+      )
       .subscribe();
   }
 
   private addTask(task: ITask): void {
     this.taskState$.next([task, ...this.taskState$.getValue()]);
+  }
+
+  private removeTask(id: number): void {
+    const currentTasks = this.taskState$.getValue();
+    const updatedTasks = currentTasks.filter((task) => task.id !== id);
+
+    this.taskState$.next(updatedTasks);
   }
 
   ngOnDestroy() {

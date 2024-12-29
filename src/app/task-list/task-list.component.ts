@@ -14,7 +14,12 @@ import { ETaskStatus } from '../shared/intefaces/task.interface';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TaskListComponent {
-  readonly tasks$ = inject(TaskService).tasks$;
+  private taskService = inject(TaskService);
+  readonly tasks$ = this.taskService.tasks$;
 
   protected readonly ETaskStatus = ETaskStatus;
+
+  removeTask(id: number): void {
+    this.taskService.remove$.next(id);
+  }
 }

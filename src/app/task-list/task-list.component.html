@@ -19,7 +19,7 @@
       <td>
         <div class="actions">
           <button class="edit" [routerLink]="'/edit-task/' + task.id">Edit</button>
-          <button class="delete">Delete</button>
+          <button class="delete" (click)="removeTask(task.id)">Delete</button>
 
           <button
             *ngIf="task.status !== ETaskStatus.completed"
