@@ -1,27 +1,64 @@
-# AngularTestDanchMykolaSomplo
+# Task Manager
+
+A small Angular application for a Task Management Dashboard.
+
+### Application Overview:
+
+  A dashboard with the following pages:
+   Home Page: A summary of tasks (e.g., total tasks, completed tasks, and
+  pending tasks).
+
+   Task List Page: A list of all tasks with options to edit, delete, and mark
+  them as completed.
+
+   Add Task Page: A form to create a task.
+
+   Edit Task Page: A form to edit a task.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.13.
 
-## Development server
+# Project Setup and Run Instructions
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Prerequisites
 
-## Code scaffolding
+Before setting up the project, ensure you have the following installed:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Node.js and npm: Download and install the latest stable version from Node.js official website.
 
-## Build
+Angular CLI: Install Angular CLI globally by running the following command in your terminal:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+npm install -g @angular/cli
 
-## Running unit tests
+Git: Ensure Git is installed for version control. Download it from Git official website.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Clone the Repository
 
-## Running end-to-end tests
+Clone the repository using the following command:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+git clone <repository_url>
 
-## Further help
+Navigate to the project directory:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+cd <project-directory>
+
+Install Dependencies
+
+Install the necessary dependencies by running the following command inside the project directory:
+
+npm install
+
+## Development Server
+
+To run the development server, use the Angular CLI command:
+
+ng serve
+
+By default, the application will be accessible at http://localhost:4200/.
+
+## Build for Production
+
+To build the project for production, use the following command:
+
+ng build --prod
+
+The production-ready files will be generated in the dist/ folder.

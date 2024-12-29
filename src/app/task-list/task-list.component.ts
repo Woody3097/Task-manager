@@ -20,7 +20,9 @@ export class TaskListComponent {
   protected readonly ETaskStatus = ETaskStatus;
 
   removeTask(id: number): void {
-    this.taskService.remove$.next(id);
+    if (confirm('Are you sure to remove?')) {
+      this.taskService.remove$.next(id);
+    }
   }
 
   changeTaskStatus(task: ITask, status: ETaskStatus): void {
