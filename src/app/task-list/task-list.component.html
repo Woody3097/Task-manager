@@ -1,0 +1,40 @@
+<h1 class="page-title">Task list</h1>
+
+
+<div class="task-table" *ngIf="tasks$ | async as tasks">
+  <table *ngIf="tasks.length; else noTasks">
+    <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let task of tasks">
+      <td><span class="table-text">{{task.title}}</span></td>
+      <td><span class="table-text" *ngIf="task.description">{{task.description}}</span></td>
+      <td>{{ task.status }}</td>
+      <td>
+        <div class="actions">
+          <button class="edit" [routerLink]="'/edit-task/' + task.id">Edit</button>
+          <button class="delete">Delete</button>
+
+          <button
+            *ngIf="task.status !== ETaskStatus.completed"
+            class="complete"
+          >Mark as Completed</button>
+
+          <button
+            *ngIf="task.status !== ETaskStatus.pending"
+            class="pending"
+          >Mark as Pending</button>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #noTasks>No tasks yet.</ng-template>
