@@ -4,6 +4,11 @@ import { EditTaskResolver } from './edit-task/edit-task.resolver';
 
 export const routes: Routes = [
   {
+    path: '',
+    loadComponent: () =>
+      import('./home/home.component').then((m) => m.HomeComponent),
+  },
+  {
     path: 'add-task',
     loadComponent: () =>
       import('./add-task/add-task.component').then((m) => m.AddTaskComponent),
@@ -24,5 +29,10 @@ export const routes: Routes = [
     resolve: {
       task: EditTaskResolver,
     },
+  },
+  {
+    path: '**',
+    redirectTo: '',
+    pathMatch: 'full',
   },
 ];

@@ -1,0 +1,9 @@
+<h1 class="page-title">Home</h1>
+
+<div class="task-card-list">
+  <app-task-card title="Total tasks:" [value]="(totalTasks$ | async) || 0"></app-task-card>
+
+  <app-task-card title="Pending tasks:" [value]="(pendingTasks$ | async) || 0"></app-task-card>
+
+  <app-task-card title="Completed tasks:" [value]="(completedTasks$ | async) || 0"></app-task-card>
+</div>
